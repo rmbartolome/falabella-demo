@@ -8,11 +8,17 @@ import (
 	"gorm.io/gorm"
 )
 
+const (
+	user     = "postgres"
+	password = "root.demo"
+	dbname   = "falabella"
+)
+
 type Connection struct {
 	DB *gorm.DB
 }
 
-func NewConnection(user, password, dbname string, logger log.Logger) Connection {
+func NewConnection(logger log.Logger) Connection {
 
 	connectionString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", "localhost", "5432", user, password, dbname)
 	db, err := gorm.Open(postgres.New(postgres.Config{
