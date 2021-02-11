@@ -24,14 +24,14 @@ func makeFindAllEndpoint(s service.DatosService) endpoint.Endpoint {
 
 func makeCreateEndpoint(s service.DatosService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		req := request.(entity.CreateRequest)
+		req := request.(entity.CreateDatosRequest)
 		e := s.Create(ctx, req.Productos)
 		return entity.CreateDatosResponse{Err: e}, nil
 	}
 }
 func makeDeleteDatosEndpoint(s service.DatosService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		req := request.(entity.DeleteOrderRequest)
+		req := request.(entity.DeleteDatosRequest)
 		e := s.Delete(ctx, req.ID)
 		return entity.DeleteDatosResponse{Err: e}, nil
 	}

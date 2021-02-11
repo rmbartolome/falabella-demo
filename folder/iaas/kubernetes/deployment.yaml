@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app.kubernetes.io/name: nombre
+    app.kubernetes.io/name: folder
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/component: api-layer
     app.kubernetes.io/part-of: restructuraciones
     app.kubernetes.io/managed-by: gitlab-ci
     app.kubernetes.io/country: chile
-  name: nombre-svc
+  name: folder-svc
 spec:
   ports:
     - name: http
@@ -16,7 +16,7 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app.kubernetes.io/name: nombre
+    app.kubernetes.io/name: folder
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/component: api-layer
     app.kubernetes.io/part-of: restructuraciones
@@ -26,12 +26,12 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  nombre-deploy
+  name:  folder-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: nombre
+      app.kubernetes.io/name: folder
       app.kubernetes.io/version: "1.0.0"
       app.kubernetes.io/component: api-layer
       app.kubernetes.io/part-of: restructuraciones
@@ -40,7 +40,7 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: nombre
+        app.kubernetes.io/name: folder
         app.kubernetes.io/version: "1.0.0"
         app.kubernetes.io/component: api-layer
         app.kubernetes.io/part-of: restructuraciones
@@ -50,12 +50,12 @@ spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name:  deliveries
+        - name:  folder
           image: hub.fif.tech/integracion-api/bfcl/nombre:v0.0.1
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name:  deliveries-cfg
+                name:  folder-cfg
           resources:
             limits:
               memory: "50Mi"

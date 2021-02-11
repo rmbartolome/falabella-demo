@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"deliveries/internal/entity"
+	"folder/internal/entity"
 
 	"github.com/go-kit/kit/log"
 )
@@ -20,7 +20,7 @@ type datosService struct {
 	tlogger    LogsService
 }
 
-func NewDeliveryService(repository entity.DatosRepository, logger log.Logger, tlogger LogsService) DatosService {
+func NewDatosService(repository entity.DatosRepository, logger log.Logger, tlogger LogsService) DatosService {
 	return &datosService{
 		repository: repository,
 		logger:     logger,
