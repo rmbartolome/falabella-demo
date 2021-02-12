@@ -71,7 +71,6 @@ type Stock struct {
 	SalePrice     float64 `json:"saleprice"`
 }
 
-/*
 //INGRESO DE PREPARE PARA CADA TABLA
 func (d *Users) Prepare() {
 	uuid, _ := uuid.NewV4()
@@ -141,6 +140,7 @@ func (d *Stock) Prepare() {
 	d.ProductName = html.EscapeString(strings.TrimSpace(d.ProductName))
 	d.TypeProdName = html.EscapeString(strings.TrimSpace(d.TypeProdName))
 }
+
 //INGRESO DE VALIDATE PARA CADA TABLA
 func (d *Users) Validate() error {
 	if d.TypeUser == "" {
@@ -277,25 +277,30 @@ func (d *Stock) Validate() error {
 	}
 	return nil
 }
+
 type FindAllProductRequest struct {
 }
 type FindAllDatosResponse struct {
 	TDatos []Product `json:"tdatos"`
 	Err    error     `json:"error,omitempty"`
 }
+
 func (r FindAllDatosResponse) error() error { return r.Err }
+
 type CreateDatosRequest struct {
 	Product Product `json:"product"`
 }
 type CreateDatosResponse struct {
 	Err error `json:"error,omitempty"`
 }
+
 func (r CreateDatosResponse) error() error { return r.Err }
+
 type DeleteDatosRequest struct {
 	ID string `json:"id"`
 }
 type DeleteDatosResponse struct {
 	Err error `json:"error,omitempty"`
 }
+
 func (r DeleteDatosResponse) error() error { return r.Err }
-*/
