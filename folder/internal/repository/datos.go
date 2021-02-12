@@ -1,5 +1,13 @@
 package repository
 
+import (
+	"errors"
+	"html"
+	"strings"
+
+	"github.com/gofrs/uuid"
+)
+
 type Users struct {
 	ID       string `gorm:"primary_key" json:"id"`
 	TypeUser string `gorm:"size:255;not null" json:"typeuser"`
