@@ -1,4 +1,4 @@
-package repository
+/*package repository
 
 import (
 	"errors"
@@ -337,3 +337,4 @@ type DeleteDatosResponse struct {
 }
 
 func (r DeleteDatosResponse) error() error { return r.Err }
+*/

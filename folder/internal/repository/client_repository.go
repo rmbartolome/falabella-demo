@@ -21,7 +21,7 @@ type clientRepository struct {
 	conn Connection
 }
 
-func NewBillRepository(conn Connection) ClientRepository {
+func NewClientRepository(conn Connection) ClientRepository {
 	return &clientRepository{
 		conn: conn,
 	}
