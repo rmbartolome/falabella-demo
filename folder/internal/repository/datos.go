@@ -1,4 +1,4 @@
-package entity
+package repository
 
 type Users struct {
 	ID       string `gorm:"primary_key" json:"id"`
@@ -71,14 +71,15 @@ type Stock struct {
 	SalePrice     float64 `json:"saleprice"`
 }
 
-/*
 //INGRESO DE PREPARE PARA CADA TABLA
 func (d *Users) Prepare() {
 	uuid, _ := uuid.NewV4()
 	id := uuid.String()
 	d.ID = id
 	d.TypeUser = html.EscapeString(strings.TrimSpace(d.TypeUser))
+
 }
+
 func (d *Client) Prepare() {
 	uuid, _ := uuid.NewV4()
 	id := uuid.String()
@@ -87,12 +88,15 @@ func (d *Client) Prepare() {
 	d.Rif = html.EscapeString(strings.TrimSpace(d.Rif))
 	d.Address = html.EscapeString(strings.TrimSpace(d.Address))
 	d.Email = html.EscapeString(strings.TrimSpace(d.Email))
+
 }
+
 func (d *TypeProd) Prepare() {
 	uuid, _ := uuid.NewV4()
 	id := uuid.String()
 	d.ID = id
 	d.Name = html.EscapeString(strings.TrimSpace(d.Name))
+
 }
 func (d *PuchaseOrder) Prepare() {
 	uuid, _ := uuid.NewV4()
@@ -100,6 +104,7 @@ func (d *PuchaseOrder) Prepare() {
 	d.ID = id
 	d.CodProd = html.EscapeString(strings.TrimSpace(d.CodProd))
 	d.Provider = html.EscapeString(strings.TrimSpace(d.Provider))
+
 }
 func (d *DeliveryOrder) Prepare() {
 	uuid, _ := uuid.NewV4()
@@ -108,14 +113,18 @@ func (d *DeliveryOrder) Prepare() {
 	d.CodBill = html.EscapeString(strings.TrimSpace(d.CodBill))
 	d.Responsable = html.EscapeString(strings.TrimSpace(d.Responsable))
 	d.Address = html.EscapeString(strings.TrimSpace(d.Address))
+
 }
+
 func (d *Bill) Prepare() {
 	uuid, _ := uuid.NewV4()
 	id := uuid.String()
 	d.ID = id
 	d.CodClient = html.EscapeString(strings.TrimSpace(d.CodClient))
 	d.Address = html.EscapeString(strings.TrimSpace(d.Address))
+
 }
+
 func (d *Product) Prepare() {
 	uuid, _ := uuid.NewV4()
 	id := uuid.String()
@@ -125,6 +134,7 @@ func (d *Product) Prepare() {
 	d.Maker = html.EscapeString(strings.TrimSpace(d.Maker))
 	d.Model = html.EscapeString(strings.TrimSpace(d.Model))
 	d.Year = html.EscapeString(strings.TrimSpace(d.Year))
+
 }
 func (d *Provider) Prepare() {
 	uuid, _ := uuid.NewV4()
@@ -133,6 +143,7 @@ func (d *Provider) Prepare() {
 	d.CodeTypeProd = html.EscapeString(strings.TrimSpace(d.CodeTypeProd))
 	d.Name = html.EscapeString(strings.TrimSpace(d.Name))
 	d.Address = html.EscapeString(strings.TrimSpace(d.Address))
+
 }
 func (d *Stock) Prepare() {
 	uuid, _ := uuid.NewV4()
@@ -140,12 +151,15 @@ func (d *Stock) Prepare() {
 	d.ID = id
 	d.ProductName = html.EscapeString(strings.TrimSpace(d.ProductName))
 	d.TypeProdName = html.EscapeString(strings.TrimSpace(d.TypeProdName))
+
 }
+
 //INGRESO DE VALIDATE PARA CADA TABLA
 func (d *Users) Validate() error {
 	if d.TypeUser == "" {
 		return errors.New("required type user")
 	}
+
 	return nil
 }
 func (d *Client) Validate() error {
@@ -155,21 +169,26 @@ func (d *Client) Validate() error {
 	if d.Email == "" {
 		return errors.New("required email")
 	}
+
 	if d.FullName == "" {
 		return errors.New("required fullname")
 	}
+
 	if d.Rif == "" {
 		return errors.New("required rif")
 	}
+
 	if d.Cellphone == 0 {
 		return errors.New("required cellphone")
 	}
+
 	return nil
 }
 func (d *TypeProd) Validate() error {
 	if d.Name == "" {
 		return errors.New("required name")
 	}
+
 	return nil
 }
 func (d *PuchaseOrder) Validate() error {
@@ -185,6 +204,7 @@ func (d *PuchaseOrder) Validate() error {
 	if d.ReplenishQuantity == 0 {
 		return errors.New("required quantity replenish")
 	}
+
 	return nil
 }
 func (d *DeliveryOrder) Validate() error {
@@ -197,6 +217,7 @@ func (d *DeliveryOrder) Validate() error {
 	if d.Responsable == "" {
 		return errors.New("required responsable")
 	}
+
 	return nil
 }
 func (d *Bill) Validate() error {
@@ -221,6 +242,7 @@ func (d *Bill) Validate() error {
 	if d.TotalProdList == 0 {
 		return errors.New("required total product list")
 	}
+
 	return nil
 }
 func (d *Product) Validate() error {
@@ -242,6 +264,7 @@ func (d *Product) Validate() error {
 	if d.Price == 0 {
 		return errors.New("required code price")
 	}
+
 	return nil
 }
 func (d *Provider) Validate() error {
@@ -257,6 +280,7 @@ func (d *Provider) Validate() error {
 	if d.Cellphone == 0 {
 		return errors.New("required cellphone")
 	}
+
 	return nil
 }
 func (d *Stock) Validate() error {
@@ -275,27 +299,33 @@ func (d *Stock) Validate() error {
 	if d.SalePrice == 0 {
 		return errors.New("required sales price")
 	}
+
 	return nil
 }
+
 type FindAllProductRequest struct {
 }
 type FindAllDatosResponse struct {
 	TDatos []Product `json:"tdatos"`
 	Err    error     `json:"error,omitempty"`
 }
+
 func (r FindAllDatosResponse) error() error { return r.Err }
+
 type CreateDatosRequest struct {
 	Product Product `json:"product"`
 }
 type CreateDatosResponse struct {
 	Err error `json:"error,omitempty"`
 }
+
 func (r CreateDatosResponse) error() error { return r.Err }
+
 type DeleteDatosRequest struct {
 	ID string `json:"id"`
 }
 type DeleteDatosResponse struct {
 	Err error `json:"error,omitempty"`
 }
+
 func (r DeleteDatosResponse) error() error { return r.Err }
-*/
